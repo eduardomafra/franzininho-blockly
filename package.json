@@ -1,0 +1,24 @@
+{
+  "name": "tcc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Eduardo Henrique",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^6.0.7",
+    "shelljs": "^0.8.3",
+    "usb": "^1.6.0"
+  },
+  "dependencies": {
+    "config.ini": "0.0.60",
+    "electron-prompt": "^1.3.1",
+    "electron-rebuild": "^1.8.6",
+    "path": "^0.12.7",
+    "usb-detection": "^4.3.0",
+    "xml2js": "^0.4.22"
+  }
+}

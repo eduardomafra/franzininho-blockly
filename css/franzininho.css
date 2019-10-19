@@ -1,0 +1,80 @@
+.ide_output_wrapper {
+    width: 100%;
+    /* height: 60px; */
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    bottom: -16px;
+    z-index:71;
+  }
+  
+  .ide_output_collapsible {
+    box-shadow: 0 0px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .ide_output_header_normal {
+    background-color: #006468;
+    color: #ffffff;
+    -moz-transition: background-color 0.6s ease-in;;
+    -o-transition: background-color 0.6s ease-in;
+    -webkit-transition: background-color 0.6s ease-in;
+  }
+
+  .content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #ffffff;
+  }
+
+  #content_ide_output {
+    resize: none;
+    outline: none;
+    border: none;
+    padding: 0px 5px;
+    font-family: monospace;
+    overflow: auto;
+    font-style: 0.2em !important;
+    min-height: 160px;
+    max-height: 160px;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    background-color: #303030;
+    color: #ffffff;
+  }
+
+  /* Spacer is used to not leave any content behind the collapsible header */
+#ide_output_spacer {
+    height: 40px;
+  }
+  @media only screen and (min-width: 0) {
+    #ide_output_spacer {
+      height: 20px;
+    }
+  }
+  @media only screen and (min-width: 601px) {
+    #ide_output_spacer {
+      height: 30px;
+    }
+  }
+  @media only screen and (min-width: 993px) {
+    #ide_output_spacer {
+      height: 40px;
+    }
+  }
+  
+  .button_toggle_toolbox_off {
+    position: absolute;
+    margin: 0 !important;
+    padding: 0px !important;
+    left: 12px;
+    top: 8px;
+    text-align: center;
+    font-size: 1.5rem !important;
+    z-index: 5;
+  }

@@ -1,0 +1,442 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <link href="css/materialize.min.css" rel="stylesheet"> -->
+    <link href="css/materialize.css" rel="stylesheet">
+    <link href="css/franzininho.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="blockninho_blockly.js"></script>
+    <script src="franzino.js"></script>
+    <script src="blockly/blockly_compressed.js"></script>
+    <script src="blockly/blocks_compressed.js"></script>
+    <script src="blockly/javascript_compressed.js"></script>
+    <script src="blockly/franzininho_compressed.js"></script>
+    <script src="blockly/msg/js/pt-br.js"></script>
+    <script src="blockly/blocks/franzininho/es.js"></script>
+    <script src="blockly/blocks/franzininho/variaveis.js"></script>
+    <script src="blockly/blocks/franzininho/funcoes.js"></script>
+    <script src="blockly/blocks/franzininho/tempo.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script> -->
+</head>
+
+<body>
+    <!-- Dropdown Structure -->
+
+    <nav class="light-blue lighten-1">
+        <div class="nav-wrapper">
+            <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo">Blockninho</a>
+            
+            <ul class="right hide-on-med-and-down">
+                    <a class="btn-floating btn-large green">
+                            <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Verificar Sketch" onclick="Verify()">save</i>
+                          </a>
+                          <a class="btn-floating btn-large blue">
+                                <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Compilar e Enviar" onclick="sendSketch()">publish</i>
+                              </a>
+                              <a class="btn-floating btn-large red">
+                                    <i class="large material-icons tooltipped data-position="bottom" data-tooltip="Abrir Sketch na Arduino IDE" onclick="openIde()">receipt</i>
+                                  </a>
+                            <!-- <a id="button_ide_left" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
+                            <a id="button_ide_middle" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
+                            <a id="button_ide_large" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
+                            <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
+                              <div class="spinner-layer spinner-orange">
+                                <div class="circle-clipper left">
+                                  <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                  <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                  <div class="circle"></div>
+                                </div>
+                              </div>
+                              <div class="spinner-layer spinner-dark-teal">
+                                <div class="circle-clipper left">
+                                  <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                  <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                  <div class="circle"></div>
+                                </div>
+                              </div>
+                              <div class="spinner-layer spinner-yellow">
+                                <div class="circle-clipper left">
+                                  <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                  <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                  <div class="circle"></div>
+                                </div>
+                              </div>
+                              <div class="spinner-layer spinner-light-teal">
+                                <div class="circle-clipper left">
+                                  <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                  <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                  <div class="circle"></div>
+                                </div>
+                              </div>
+                            </div> -->
+                          <!-- </div> -->
+                <!-- <li><form>
+              <div class="input-field">
+                <input id="search" type="" placeholder="Franzininho_Sketch.ino" required>
+                <label class="label-icon" for="search"><i class="material-icons">mode_edit</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form></li> -->
+            </ul>
+        </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+
+        <li><a href="#modal_settings" class="modal-trigger"><i class="material-icons">settings_applications</i>Configurações</a></li>
+        <li><a href="#modal_board" class="modal-trigger"><i class="material-icons">settings_applications</i>Detectar Franzininho</a></li>
+        <li><a onclick='limpar()' href="#!"><i class="material-icons">clear_all</i>Limpar</a></li>
+        <li><a onclick='oi()' href="#!"><i class="material-icons">clear_all</i>oi</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Exemplos<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a onclick='loadExample("./examples/blink.xml", "blink")' href="#!">Piscar LED</a></li>
+                <li><a onclick='loadExample("./examples/control-led.xml", "control-led")' href="#!">Controlar brilho de LED</a></li>
+                <li><a onclick='loadExample("./examples/read-buttom.xml", "read-buttom")' href="#!">Leitura de Tecla</a></li>
+                <li><a onclick='loadExample("./examples/buttom-on-off.xml", "buttom-on-off")' href="#!">Tecla Liga/Desliga</a></li>
+                <li><a onclick='loadExample("./examples/sensor-ldr.xml", "sensor-ldr")' href="#!">Sensor de luz com LDR</a></li>
+                <li><a onclick='loadExample("./examples/semaforo.xml", "semaforo")' href="#!">Semáforo</a></li>
+                <li><a onclick='loadExample("./examples/theremin.xml", "theremin")' href="#!">Theremin</a></li>
+                <!-- <li><a onclick='save()' href="#!">Salvar XML</a></li> -->
+            
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p></p>
+
+    
+    <div class="row" style="z-index: 0;">
+      <div class="col s12 m12 l8" style="position:relative">
+         <!-- Toolbox visibility button -->
+         <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off" style="display: none"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
+         <!-- Arduino IDE action buttons -->
+         
+         <!-- Blockly Panel -->
+         <div class="card-panel white" style="padding: 0">
+           <div id="blocks_panel" class="content blocks_panel_large">
+             <div id="content_blocks" class="content z-depth-1"></div>
+           </div>
+         </div>
+       </div>
+        <div class="col s8">
+            <div id="blocklyDiv" style="height:570px; position: relative">
+                <xml id="toolbox" style="display: none;">
+                    <category name="Lógica">
+                        <block type="controls_if"></block>
+                        <block type="logic_compare3"></block>
+                        <block type="logic_operation"></block>
+                        <block type="logic_negate"></block>
+                        <block type="logic_boolean"></block>
+                        <block type="logic_null"></block>
+                        <block type="logic_ternary"></block>
+                    </category>
+                    <category name="Loops">
+                        <block type="controls_repeat"></block>
+                        <block type="controls_whileUntil"></block>
+                        <block type="controls_for"></block>
+                        <block type="controls_flow_statements"></block>
+                    </category>
+                    <category name="Matemática" colour="120">
+                        <block type="math_number"></block>
+                        <block type="math_arithmetic"></block>
+                        <block type="math_single"></block>
+                        <block type="math_trig"></block>
+                        <block type="math_constant"></block>
+                        <block type="math_number_property"></block>
+                        <block type="math_change">
+                            <value name="DELTA">
+                                <block type="math_number"></block>
+                            </value>
+                        </block>
+                        <block type="math_round"></block>
+                        <block type="math_modulo"></block>
+                        <block type="math_constrain">
+                            <value name="LOW">
+                                <block type="math_number">
+                                    <field name="NUM">1</field>
+                                </block>
+                            </value>
+                            <value name="HIGH">
+                                <block type="math_number">
+                                    <field name="NUM">100</field>
+                                </block>
+                            </value>
+                        </block>
+                        <block type="math_random_int">
+                            <value name="FROM">
+                                <block type="math_number">
+                                    <field name="NUM">1</field>
+                                </block>
+                            </value>
+                            <value name="TO">
+                                <block type="math_number">
+                                    <field name="NUM">100</field>
+                                </block>
+                            </value>
+                        </block>
+                        <block type="math_random_float"></block>
+                        <!-- <block type="base_map"></block> -->
+                    </category>
+                    <category name="Textos" colour="230">
+                        <block type="text"></block>
+                        <block type="text_join"></block>
+                        <block type="text_append">
+                            <value name="TEXT">
+                                <block type="text"></block>
+                            </value>
+                        </block>
+                        <block type="text_length"></block>
+                        <block type="text_isEmpty"></block>
+                    </category>
+                    <!-- <category name="Variáveis" colour="20">
+                        <block type="variables_get"></block>
+                        <block type="variables_set"></block>
+                        <block type="variables_set">
+                            <value name="VALUE">
+                                <block type="variables_set_type"></block>
+                            </value>
+                        </block>
+                        <block type="variables_set_type"></block>
+                    </category> -->
+                    <category name="Variables" custom="VARIABLE">
+                    
+
+                    </category>
+
+                    <category name="Funções" colour="330" custom="">
+                        <block type="franzininho_funcoes"></block>
+                        <block type="procedures_defnoreturn"></block>
+                        <block type="procedures_defreturn"></block>
+                        <block type="procedures_ifreturn"></block>
+                    </category>
+                    <category name="Entrada/Saída">
+                        <block type="es_digitalwrite">
+                            <value name="STATE">
+                                <block type="es_highlow"></block>
+                            </value>
+                        </block>
+                        <block type="es_digitalread"></block>
+                        <block type="es_led_embutido">
+                            <value name="STATE">
+                                <block type="es_highlow"></block>
+                            </value>
+                        </block>
+                        <block type="es_analogwrite"></block>
+                        <block type="es_analogread"></block>
+                        <block type="es_highlow"></block>
+                        <block type="inout_custom_digital_write">
+                            <value name="PIN">
+                                <block type="math_number">
+                                    <field name="NUM">0</field>
+                                </block>
+                            </value>
+                            <value name="STAT">
+                                <block type="es_highlow">
+                                    <field name="BOOL">HIGH</field>
+                                </block>
+                            </value>
+                        </block>
+                        <block type="inout_custom_digital_read"></block>
+                        <block type="inout_custom_analog_write"></block>
+                        <block type="inout_custom_analog_read"></block>
+                    </category>
+                    <category name="Tempo">
+                        <block type="tempo_delay">
+                            <value name="DELAY_TIME_MILI">
+                                <block type="math_number">
+                                    <field name="NUM">1000</field>
+                                </block>
+                            </value>
+                        </block>
+                        <block type="tempo_delay_micro">
+                            <value name="DELAY_TIME_MICRO">
+                                <block type="math_number">
+                                    <field name="NUM">100</field>
+                                </block>
+                            </value>
+                        </block>
+                        <block type="tempo_mili"></block>
+                        <block type="tempo_micro"></block>
+                        <block type="tempo_loop_infinito"></block>
+                    </category>
+                </xml>
+            </div>
+        </div>
+        
+        <div class="col s4" style="margin-top: -8px;">
+                <ul class="collapsible">
+                        <li class="active">
+                                <div class="collapsible-header"><i class="material-icons">code</i>Código</div>
+                                <div class="collapsible-body" style="margin-bottom: -15px;">
+                                        <textarea id="textarea" style="height:490px;"></textarea>
+
+                                        <div class="card-panel white" style="padding: 0">
+                                            <div id="blocks_panel" class="content blocks_panel_large">
+                                                <div id="content_blocks" class="content z-depth-1"></div>
+                                            </div>
+                                        </div>    
+                                </div>
+                                
+                    
+                        </li>
+                        <li>
+                          <div class="collapsible-header"><i class="material-icons">timeline</i>Circuito</div>
+                          <div class="collapsible-body">
+                                <img src="./circuits/semaforo.png" id="img_circuit" alt="semaforo" width=365 height=490>
+                          </div>
+                        </li>
+                      </ul>
+            <!-- <ul class="tabs">
+              <li class="tab col s4"><a href="#test1">Arduino</a></li>
+              <li class="tab col s4 " id="porra"><a href="#test2">Circuitos</a></li>
+            </ul> -->
+          </div>
+          <!-- <div id="test1" class="col s4">
+            <textarea id="textarea" style="height:520px;"></textarea>
+
+            <div class="card-panel white" style="padding: 0">
+                <div id="blocks_panel" class="content blocks_panel_large">
+                    <div id="content_blocks" class="content z-depth-1"></div>
+                </div>
+            </div>
+          </div> -->
+          <!-- <div id="test2" class="col s4">
+            <img src="./circuits/semaforo.png" alt="semaforo" width=365 height=520>
+          </div> -->
+   
+            <div class="card-panel white" style="padding: 0">
+                <div id="blocks_panel" class="content blocks_panel_large">
+                    <div id="content_blocks" class="content z-depth-1"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ide_output_wrapper">
+        <ul class="collapsible ide_output_collapsible" data-collapsible="expandable">
+            <li>
+                <div id="ide_output_collapsible_header" class="collapsible-header ide_output_header_normal">
+                    <i class="mdi-action-swap-vert Medium" style="font-size: 2.2rem;"></i>
+                    <span class="translatable_arduinoOpMainTitle">Arduino Terminal</span><i class="material-icons">input</i>
+                </div>
+                <div class="collapsible-body">
+                    <div id="content_ide_output" class="content">
+
+                        <div class="row">
+                            <div class="col s12">
+                                <p id="t1"></p>
+                            </div>
+                            <div class="col s12">
+                                <p id="t2"></p>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="ide_output_spacer"></div>
+
+    <!-- Modal Structure -->
+    <div id="modal_settings" class="modal">
+        <div class="modal-content">
+            <h4>Configurações</h4>
+        </div>
+
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="compiler_path" type="text" class="">
+                        <label for="compiler_path">Caminho do Compilador</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="sketches_path" type="text" class="">
+                        <label for="sketches_path">Caminho da Sketches</label>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Selecione o bootloader</option>
+                            <option value="1">Arduino Gemma</option>
+                            <option value="2">Adafruit Trinket</option>
+                            <option value="3">Micronucleus</option>
+                        </select>
+                        <label>Bootloader</label>
+                    </div>
+                </div> -->
+                <!-- <div class="row">
+                    <div class="col s12">
+                        <select>
+                            <option value="" disabled selected>Selecione sua placa</option>
+                            <option value="1">Arduino Gemma</option>
+                        </select>
+                        <a class="waves-effect waves-light btn" id="btnDetect" onclick="detectBoard()">DETECTAR</a>
+                    </div>
+                </div> -->
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salvar</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+        </div>
+    </div>
+
+    <div id="modal_board" class="modal">
+        <div class="modal-content">
+          <h4>Detectar Placa</h4>
+          <div class="row" id="progresso">
+            <span id="detecting"></span>
+        </div>
+      
+          <select id='sel_board' onchange="setBoard()" class="browser-default">
+            <option value="" disabled selected>Entradas detectadas</option>
+        </select>
+        <br>
+        <a class="waves-effect waves-light btn" id="btnDetect" onclick="detectBoard()">DETECTAR</a>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">SALVAR</a>
+        </div>
+      </div>
+
+    <script type="text/javascript" src="js/hammer.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="franzininho_design.js"></script>
+    <script src="save.js"></script>
+</body>
+
+<script>
+
+    start();
+
+</script>
+
+</html>
