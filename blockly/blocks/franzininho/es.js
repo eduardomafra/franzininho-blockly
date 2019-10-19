@@ -45,6 +45,25 @@ Blockly.Blocks['es_highlow'] = {
     }
   };
 
+  Blockly.Blocks['es_analogpins'] = {
+    /**
+     * Block for creating a pin state.
+     * @this Blockly.Block
+     */
+    init: function() {
+      this.setHelpUrl('http://arduino.cc/en/Reference/Constants');
+      this.setColour(Blockly.Blocks.ES.HUE);
+      this.appendDummyInput()
+           .appendField("pino analógico")
+          .appendField(
+              new Blockly.FieldDropdown(Blockly.Franzininho.Placas.versoes.rv1.pinosAnalogicosDD),
+             'PIN');
+      this.setOutput(true);
+
+      this.setTooltip("");
+    }
+  };
+
   Blockly.Blocks['es_digitalread'] = {
     /**
      * Block for creating a 'read pin'.

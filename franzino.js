@@ -7,26 +7,41 @@ var SKETCH;
 var COMPILER;
 var DEFAULT_DEVICE;
 var workspace1;
+const editJsonFile = require("edit-json-file");
 
-function vamove(){
-    
-    var objToIniString = {
-        mysection: {
-            key: "string",
-            integer: 1234,
-            real: 3.14
-        }
-    };
+function saveConfig(){
+    let file = editJsonFile(`./config.json`);
+    var compiler_path = document.getElementById('compiler_path');
+    var sketch_path = document.getElementById('sketches_path');
 
+    file.set("path.arduino", compiler_path.value);
+    file.set("path.sketch", sketch_path.value);
+    file.save();
 
-    fs.writeFile('config.ini', configIni.stringify(objToIniString), function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-      });
+    SKETCH = sketch_path.value;
+    COMPILER = compiler_path.value;
+}
+
+function updateConfig(){
+    let file = editJsonFile(`./config.json`);
+    var compiler_path = document.getElementById('compiler_path');
+    var sketch_path = document.getElementById('sketches_path');
+
+    compiler_path.value = file.get("path.arduino");
+    sketch_path.value = file.get("path.sketch");
 
 }
 
+function attCfg(){ //GAMBIARRA PARA CONSERTAR O BUG DO TITULO JUNTO COM TEXTO
+    var compiler_path = document.getElementById('compiler_path');
+    var sketch_path = document.getElementById('sketches_path');
+
+    compiler_path.value = "."
+    sketch_path.value = "."
+}
+
 function start(){
+    attCfg();
 
     //JQUERY
 
@@ -89,23 +104,30 @@ function start(){
 
     $("#img_circuit").hide();
 
-    var compiler_path = document.getElementById('compiler_path');
-    var sketch_path = document.getElementById('sketches_path');
+    let file = editJsonFile(`./config.json`);
 
-    if (DEFAULT_OS == 'Mac OS X'){
-        var default_path = '/Applications/Arduino.app/Contents/MacOS/Arduino';
-        compiler_path.value = default_path;
+    if (file.get("path.arduino") == "" || file.get("path.sketch") == ""){
 
-        sketch_path.value = (__dirname) + '/FranzininhoSketches/';
-    } else if (DEFAULT_OS == 'Windows'){
-        var default_path = 'C:\\Program Files (x86)\\Arduino\\arduino_debug.exe';
-        compiler_path.value = default_path;
+        if (DEFAULT_OS == 'Mac OS X'){
+            var default_path = '/Applications/Arduino.app/Contents/MacOS/Arduino';
 
-        sketch_path.value = (__dirname) + '\\FranzininhoSketches\\';
+            file.set("path.arduino", default_path);
+            file.set("path.sketch", (__dirname) + '/FranzininhoSketches/');
+            file.save();
+
+        } else if (DEFAULT_OS == 'Windows'){
+        
+            var default_path = 'C:\\Program Files (x86)\\Arduino\\arduino_debug.exe';
+
+            file.set("path.arduino", default_path);
+            file.set("path.sketch", (__dirname) + '\\FranzininhoSketches\\');
+            file.save();
+
+        }
+        SKETCH = file.get("path.sketch");
+        COMPILER = file.get("path.arduino");
+
     }
-
-    SKETCH = sketch_path.value;
-    COMPILER = compiler_path.value;
 }
 //FUNÇÕES
 

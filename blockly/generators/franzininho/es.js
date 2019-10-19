@@ -10,6 +10,12 @@ Blockly.Franzininho['es_highlow'] = function(block) {
   return [code, Blockly.Franzininho.ORDER_ATOMIC];
   };
 
+  Blockly.Franzininho['es_analogpins'] = function(block) {
+    // Boolean values true and false.
+    var code = this.getFieldValue('PIN');
+  return [code, Blockly.Franzininho.ORDER_ATOMIC];
+  };
+
 Blockly.Franzininho['es_digitalwrite'] = function(block) {
     var pin = block.getFieldValue('PIN');
     var stateOutput = Blockly.Franzininho.valueToCode(

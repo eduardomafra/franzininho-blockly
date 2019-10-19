@@ -13,6 +13,7 @@ Blockly.Franzininho.Placas.versoes.rv1 = {
     pinosDigitais: [['1', '1'], ['2', '2']],
     ledEmbutido: [['BUILTIN_1', '1']],
     pinosPwm: [['0', '0'], ['1', '1'], ['4', '4']],
-    pinosAnalogicos: [ ['A0', '5'], ['A1', '2'], ['A2', '4'], ['A3', '3'] ]
+    pinosAnalogicos: [ ['A0', '5'], ['A1', '2'], ['A2', '4'], ['A3', '3'] ],
+    pinosAnalogicosDD: [ ['A0', 'A0'], ['A1', 'A1'], ['A2', 'A2'], ['A3', 'A3'] ]
 
 };

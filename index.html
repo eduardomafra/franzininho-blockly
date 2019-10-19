@@ -93,7 +93,7 @@
 
     <ul id="slide-out" class="sidenav">
 
-        <li><a href="#modal_settings" class="modal-trigger"><i class="material-icons">settings_applications</i>Configurações</a></li>
+        <li><a href="#modal_settings" onclick="updateConfig()" class="modal-trigger"><i class="material-icons">settings_applications</i>Configurações</a></li>
         <li><a href="#modal_board" class="modal-trigger"><i class="material-icons">settings_applications</i>Detectar Franzininho</a></li>
         <li><a onclick='limpar()' href="#!"><i class="material-icons">clear_all</i>Limpar</a></li>
         <li><a onclick='oi()' href="#!"><i class="material-icons">clear_all</i>oi</a></li>
@@ -256,6 +256,7 @@
                                 </block>
                             </value>
                         </block>
+                        <block type="es_analogpins"></block>
                         <block type="inout_custom_digital_read"></block>
                         <block type="inout_custom_analog_write"></block>
                         <block type="inout_custom_analog_read"></block>
@@ -403,7 +404,7 @@
         </div>
 
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Salvar</a>
+            <a href="#!" onclick="saveConfig()" class="modal-close waves-effect waves-green btn-flat">Salvar</a>
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
         </div>
     </div>
