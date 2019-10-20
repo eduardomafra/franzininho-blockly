@@ -118,73 +118,6 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "helpUrl": "%{BKY_CONTROLS_IF_HELPURL}",
     "extensions": ["controls_if_tooltip"]
   },
-  // Block for comparison operator.
-  {
-    "type": "logic_compare",
-    "message0": "%1 %2 %3",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "A"
-        // "check": ["Boolean","Number","String"]
-      },
-      {
-        "type": "field_dropdown",
-        "name": "OP",
-        "options": [
-          ["=", "EQ"],
-          ["\u2260", "NEQ"],
-          ["\u200F<", "LT"],
-          ["\u200F\u2264", "LTE"],
-          ["\u200F>", "GT"],
-          ["\u200F\u2265", "GTE"]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "B"
-        // "check": ["Boolean","Number","String"]
-      }
-    ],
-    "inputsInline": true,
-    "output": "Boolean",
-    "style": "logic_blocks",
-    "helpUrl": "%{BKY_LOGIC_COMPARE_HELPURL}",
-    "extensions": ["logic_compare", "logic_op_tooltip"]
-  },
-  {
-    "type": "logic_compare2",
-    "message0": "%1 %2 %3",
-    "args0": [
-      {
-        "type": "input_value",
-        "name": "A",
-        // "check": ["Boolean","Number","String"]
-      },
-      {
-        "type": "field_dropdown",
-        "name": "OP",
-        "options": [
-          ["=", "EQ"],
-          ["\u2260", "NEQ"],
-          ["\u200F<", "LT"],
-          ["\u200F\u2264", "LTE"],
-          ["\u200F>", "GT"],
-          ["\u200F\u2265", "GTE"]
-        ]
-      },
-      {
-        "type": "input_value",
-        "name": "B",
-        // "check": ["Boolean","Number","String"]
-      }
-    ],
-    "inputsInline": true,
-    "output": "Boolean",
-    "style": "logic_blocks",
-    "helpUrl": "%{BKY_LOGIC_COMPARE_HELPURL}",
-    "extensions": ["logic_compare", "logic_op_tooltip"]
-  },
   // Block for logical operations: 'and', 'or'.
   {
     "type": "logic_operation",
@@ -668,159 +601,7 @@ Blockly.Constants.Logic.LOGIC_TERNARY_ONCHANGE_MIXIN = {
 Blockly.Extensions.registerMixin('logic_ternary',
     Blockly.Constants.Logic.LOGIC_TERNARY_ONCHANGE_MIXIN);
 
-
-    
-
-    // Blockly.Blocks['logic_compare1'] = {
-    //   /**
-    //    * Block for comparison operator.
-    //    * @this Blockly.Block
-    //    */
-    //   init: function() {
-    //     var OPERATORS = this.RTL ? [
-    //           ['=', 'EQ'],
-    //           ['\u2260', 'NEQ'],
-    //           ['>', 'LT'],
-    //           ['\u2265', 'LTE'],
-    //           ['<', 'GT'],
-    //           ['\u2264', 'GTE']
-    //         ] : [
-    //           ['=', 'EQ'],
-    //           ['\u2260', 'NEQ'],
-    //           ['<', 'LT'],
-    //           ['\u2264', 'LTE'],
-    //           ['>', 'GT'],
-    //           ['\u2265', 'GTE']
-    //         ];
-    //     this.setHelpUrl("");
-    //     this.setColour(Blockly.Constants.Logic.HUE);
-    //     this.setOutput(true, "Boolean");
-    //     this.appendValueInput('A');
-    //     this.appendValueInput('B')
-    //         .appendField(new Blockly.FieldDropdown(OPERATORS), 'OP');
-    //     this.setInputsInline(true);
-    //     // Assign 'this' to a variable for use in the tooltip closure below.
-    //     var thisBlock = this;
-    //     this.setTooltip(function() {
-    //       var op = thisBlock.getFieldValue('OP');
-    //       var TOOLTIPS = {
-    //         'EQ': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_EQ,
-    //         'NEQ': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_NEQ,
-    //         'LT': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LT,
-    //         'LTE': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LTE,
-    //         'GT': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GT,
-    //         'GTE': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GTE
-    //       };
-    //       return TOOLTIPS[op];
-    //     });
-    //     this.prevBlocks_ = [null, null];
-    //   },
-    //   /**
-    //    * Called whenever anything on the workspace changes.
-    //    * Prevent mismatched types from being compared.
-    //    * @param {!Blockly.Events.Abstract} e Change event.
-    //    * @this Blockly.Block
-    //    */
-    //   onchange: function(e) {
-    //     var blockA = this.getInputTargetBlock('A');
-    //     var blockB = this.getInputTargetBlock('B');
-    //     // Disconnect blocks that existed prior to this change if they don't match.
-    //     if (blockA && blockB &&
-    //         !blockA.outputConnection.checkType_(blockB.outputConnection)) {
-    //       // Mismatch between two inputs.  Disconnect previous and bump it away.
-    //       // Ensure that any disconnections are grouped with the causing event.
-    //       Blockly.Events.setGroup(e.group);
-    //       for (var i = 0; i < this.prevBlocks_.length; i++) {
-    //         var block = this.prevBlocks_[i];
-    //         if (block === blockA || block === blockB) {
-    //           block.unplug();
-    //           block.bumpNeighbours_();
-    //         }
-    //       }
-    //       Blockly.Events.setGroup(false);
-    //     }
-    //     this.prevBlocks_[0] = blockA;
-    //     this.prevBlocks_[1] = blockB;
-    //   },
-    //   /** Assigns a type to the block, comparison operations result in booleans. */
-    //   getBlockType: function() {
-    //     return Boolean;
-    //   }
-    // };
-    Blockly.Blocks['logic_compare1'] = {
-      /**
-       * Block for comparison operator.
-       * @this Blockly.Block
-       */
-      init: function() {
-        var OPERATORS = Blockly.RTL ? [
-              ['=', 'EQ'],
-              ['\u2260', 'NEQ'],
-              ['>', 'LT'],
-              ['\u2265', 'LTE'],
-              ['<', 'GT'],
-              ['\u2264', 'GTE']
-            ] : [
-              ['=', 'EQ'],
-              ['\u2260', 'NEQ'],
-              ['<', 'LT'],
-              ['\u2264', 'LTE'],
-              ['>', 'GT'],
-              ['\u2265', 'GTE']
-            ];
-        this.setHelpUrl("");
-        this.setColour(Blockly.Constants.Logic.HUE);
-        this.setOutput(true, 'Boolean');
-        this.appendValueInput('A');
-        this.appendValueInput('B')
-            .appendField(new Blockly.FieldDropdown(OPERATORS), 'OP');
-        this.setInputsInline(true);
-        // Assign 'this' to a variable for use in the tooltip closure below.
-        var thisBlock = this;
-        this.setTooltip(function() {
-          var op = thisBlock.getFieldValue('OP');
-          var TOOLTIPS = {
-            'EQ': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_EQ,
-            'NEQ': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_NEQ,
-            'LT': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LT,
-            'LTE': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LTE,
-            'GT': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GT,
-            'GTE': Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GTE
-          };
-          return TOOLTIPS[op];
-        });
-        this.prevBlocks_ = [null, null];
-      },
-      /**
-       * Called whenever anything on the workspace changes.
-       * Prevent mismatched types from being compared.
-       * @this Blockly.Block
-       */
-      onchange: function() {
-        if (!this.workspace) {
-          // Block has been deleted.
-          return;
-        }
-        var blockA = this.getInputTargetBlock('A');
-        var blockB = this.getInputTargetBlock('B');
-        // Kick blocks that existed prior to this change if they don't match.
-        if (blockA && blockB &&
-            !blockA.outputConnection.checkType_(blockB.outputConnection)) {
-          // Mismatch between two inputs.  Disconnect previous and bump it away.
-          for (var i = 0; i < this.prevBlocks_.length; i++) {
-            var block = this.prevBlocks_[i];
-            if (block === blockA || block === blockB) {
-              block.setParent(null);
-              block.bumpNeighbours_();
-            }
-          }
-        }
-        this.prevBlocks_[0] = blockA;
-        this.prevBlocks_[1] = blockB;
-      }
-    };    
-
-    Blockly.Blocks['logic_compare3'] = {
+    Blockly.Blocks['logic_compare'] = {
       /**
        * Block for comparison operator.
        * @this Blockly.Block
@@ -873,17 +654,17 @@ Blockly.Extensions.registerMixin('logic_ternary',
         var blockA = this.getInputTargetBlock('A');
         var blockB = this.getInputTargetBlock('B');
         // Disconnect blocks that existed prior to this change if they don't match.
-        // if (blockA && blockB &&
-        //     !blockA.outputConnection.checkType_(blockB.outputConnection)) {
-        //   // Mismatch between two inputs.  Disconnect previous and bump it away.
-        //   for (var i = 0; i < this.prevBlocks_.length; i++) {
-        //     var block = this.prevBlocks_[i];
-        //     if (block === blockA || block === blockB) {
-        //       block.setParent(null);
-        //       block.bumpNeighbours_();
-        //     }
-        //   }
-        // }
+        if (blockA && blockB &&
+            !blockA.outputConnection.checkType_(blockB.outputConnection)) {
+          // Mismatch between two inputs.  Disconnect previous and bump it away.
+          for (var i = 0; i < this.prevBlocks_.length; i++) {
+            var block = this.prevBlocks_[i];
+            if (block === blockA || block === blockB) {
+              // block.setParent(null);
+              block.bumpNeighbours_();
+            }
+          }
+        }
         this.prevBlocks_[0] = blockA;
         this.prevBlocks_[1] = blockB;
       }
