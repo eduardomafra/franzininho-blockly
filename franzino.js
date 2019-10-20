@@ -124,10 +124,12 @@ function start(){
             file.save();
 
         }
-        SKETCH = file.get("path.sketch");
-        COMPILER = file.get("path.arduino");
 
     }
+
+    SKETCH = file.get("path.sketch");
+    COMPILER = file.get("path.arduino");
+    
 }
 //FUNÇÕES
 
