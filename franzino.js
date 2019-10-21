@@ -129,7 +129,7 @@ function start(){
 
     SKETCH = file.get("path.sketch");
     COMPILER = file.get("path.arduino");
-    
+
 }
 //FUNÇÕES
 
@@ -213,16 +213,6 @@ function start(){
 
  }
 
-function oi(){
-    var variaveis = workspace1.getAllVariables();
-    for(let i in variaveis){
-        if(variaveis[i].name == 'estadoAtualBT'){
-            workspace1.deleteVariableById(variaveis[i].id_);
-        }
-        
-    }
-}
-
 function sendSketch(){
 
     if (DEFAULT_DEVICE != undefined){
@@ -230,14 +220,13 @@ function sendSketch(){
 
         var usbDetect = require('usb-detection');
 
-        var t1 = document.getElementById('t1')
-        var t2 = document.getElementById('t2')
+        var arduinoLog = document.getElementById('arduinoLog1')
         // console.log(t1)
-        t1.innerHTML = "Detectando a placa franzininho."; 
+        arduinoLog.innerHTML = "Detectando a placa franzininho."; 
         var counter = 0;
         usbDetect.startMonitoring();
         var timer = setInterval(function() {
-        t1.innerHTML = t1.innerHTML + '.';
+        arduinoLog.innerHTML = arduinoLog.innerHTML + '.';
 
         usbDetect.on('add', function(device) {
             console.log('add', device); 
@@ -249,11 +238,11 @@ function sendSketch(){
 
         if( counter == 7 ) {
             usbDetect.stopMonitoring();
-            t1.innerHTML = t1.innerHTML + " <font color='green'> Ok </font> " 
+            arduinoLog.innerHTML = arduinoLog.innerHTML + " <font color='green'> Ok </font> " 
             Compile();
             clearInterval( timer );
         } else if ( counter == 6 ){
-            t1.innerHTML = t1.innerHTML + " <font color='red'>Placa não detectada</font> <br> Certifique-se de que o botão RESET da placa foi pressionado durante a detecção " 
+            arduinoLog.innerHTML = arduinoLog.innerHTML + " <font color='red'>Placa não detectada</font> <br> Certifique-se de que o botão RESET da placa foi pressionado durante a detecção " 
             usbDetect.stopMonitoring();
             clearInterval( timer );
         }
@@ -262,8 +251,8 @@ function sendSketch(){
         }, 1000);
         
     } else {
-        var t1 = document.getElementById('t1')
-        t1.innerHTML = " <font color='red'>Atenção, placa não configurada!</font> <br> Configure em Menu -> Detectar Franzininho " 
+        var arduinoLog = document.getElementById('arduinoLog1')
+        arduinoLog.innerHTML = " <font color='red'>Atenção, placa não configurada!</font> <br> Configure em Menu -> Detectar Franzininho " 
     }
 
 }
@@ -283,29 +272,33 @@ function Compile() {
         cwd: __dirname
     }, (err, stdout, stderr) => {
         console.log(stdout);
-        var t2 = document.getElementById('t2');
-        t2.innerHTML = stdout;
+        var arduinoLog2 = document.getElementById('arduinoLog2');
+        arduinoLog2.innerHTML = stdout;
         if (err) {
             console.log(err);
             // if (String(err).indexOf("\n") > 0){
             //     var i = String(err).indexOf("\n");
             //     console.log(i);
             // }
-            var t2 = document.getElementById('t2');
-            var porra = String(err).replace("\n", "<br />");
-            if (porra.indexOf("<br />") > 0){
-                var i = porra.indexOf("<br />");
+            var arduinoLog2 = document.getElementById('arduinoLog2');
+            var arduinoLog2Formated = String(err).replace("\n", "<br />");
+            if (arduinoLog2Formated.indexOf("<br />") > 0){
+                var i = arduinoLog2Formated.indexOf("<br />");
                 console.log(i);
             }
-            t2.innerHTML = porra;
+            arduinoLog2.innerHTML = arduinoLog2Formated;
         }
             // else runCommand(cmds, cb);
     });
 }
 
+function clearTerminal(){
+
+}
+
 function expandTerminal(){
-    var terminalHeader = document.getElementById('ide_output_collapsible_header');
-    terminalHeader.click();
+    // var terminalHeader = document.getElementById('ide_output_collapsible_header');
+    // terminalHeader.click();
 
 }
 
@@ -325,21 +318,21 @@ function Verify() {
         cwd: __dirname
     }, (err, stdout, stderr) => {
         console.log(stdout);
-        var t2 = document.getElementById('t2');
-        t2.innerHTML = stdout;
+        var arduinoLog2 = document.getElementById('arduinoLog2');
+        arduinoLog2.innerHTML = stdout;
         if (err) {
             console.log(err);
             // if (String(err).indexOf("\n") > 0){
             //     var i = String(err).indexOf("\n");
             //     console.log(i);
             // }
-            var t2 = document.getElementById('t2');
+            var arduinoLog2 = document.getElementById('arduinoLog2');
             var porra = String(err).replace("\n", "<br />");
             if (porra.indexOf("<br />") > 0){
                 var i = porra.indexOf("<br />");
                 console.log(i);
             }
-            t2.innerHTML = porra;
+            arduinoLog2.innerHTML = porra;
         }
             // else runCommand(cmds, cb);
     });
@@ -455,8 +448,7 @@ function openIde(){
 
 //FUNÇÕES PARA IMPLEMENTAR EXEMPLOS
 function limpar(){
-    // $("#img_circuit").attr("src","");
-    // $("#img_circuit").attr("alt","");
+
     $("#img_circuit").hide();
 
     workspace1.clear();
