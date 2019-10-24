@@ -146,10 +146,10 @@ Blockly.Blocks['es_highlow'] = {
       this.setColour(Blockly.Blocks.ES.HUE);
       this.appendValueInput("PIN")
         .setCheck("Number")
-        .appendField("Digital write pin");
+        .appendField("coloque o pino digital");
       this.appendValueInput("STAT")
         .setCheck()
-        .appendField("stat")
+        .appendField("em")
       this.setInputsInline(true);
       this.setPreviousStatement(true);
       this.setNextStatement(true);
@@ -163,7 +163,7 @@ Blockly.Blocks['es_highlow'] = {
       this.setColour(Blockly.Blocks.ES.HUE);
       this.appendValueInput("PIN_READ")
         .setCheck("Number")
-        .appendField('DIGITAL READ PIN');
+        .appendField('leia o pino digital');
       this.setInputsInline(true);
       this.setOutput(true);
       this.setTooltip('');
@@ -176,10 +176,10 @@ Blockly.Blocks['es_highlow'] = {
       this.setColour(Blockly.Blocks.ES.HUE);
       this.appendValueInput("PIN_ANALOGWRITE")
         .setCheck("Number")
-        .appendField('AnalogWrite PIN');
+        .appendField('coloque o pino analógico');
       this.appendValueInput("NUM")
         .setCheck("Number")
-        .appendField('value (0-255)');
+        .appendField('em (0-255)');
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -193,7 +193,7 @@ Blockly.Blocks['es_highlow'] = {
       this.setColour(Blockly.Blocks.ES.HUE);
       this.appendValueInput("PIN_ANALOGREAD")
         .setCheck("Number")
-        .appendField('AnalogRead PIN');
+        .appendField('leia o pino analógico');
       this.setInputsInline(true);
       this.setOutput(true, 'Number');
       this.setTooltip('');

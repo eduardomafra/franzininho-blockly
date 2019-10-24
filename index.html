@@ -28,12 +28,19 @@
             <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo">Blockninho</a>
             
+            
             <ul class="right hide-on-med-and-down">
+                    <a class="btn-floating btn-large purple">
+                            <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Salvar Blocos" onclick="save()">save</i>
+                          </a>
+                          <a class="btn-floating btn-large pink">
+                                <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Carregar Blocos" onclick="loadXml()">file_upload</i>
+                              </a>
                     <a class="btn-floating btn-large green">
-                            <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Verificar Sketch" onclick="Verify()">save</i>
+                            <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Verificar Sketch" onclick="Verify()">security</i>
                           </a>
                           <a class="btn-floating btn-large blue">
-                                <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Compilar e Enviar" onclick="sendSketch()">publish</i>
+                                <i class="large material-icons tooltipped" data-position="bottom" data-tooltip="Compilar e Enviar" onclick="sendSketch()">play_arrow</i>
                               </a>
                               <a class="btn-floating btn-large red">
                                     <i class="large material-icons tooltipped data-position="bottom" data-tooltip="Abrir Sketch na Arduino IDE" onclick="openIde()">receipt</i>
@@ -94,8 +101,8 @@
     <ul id="slide-out" class="sidenav">
 
         <li><a href="#modal_settings" onclick="updateConfig()" class="modal-trigger"><i class="material-icons">settings_applications</i>Configurações</a></li>
-        <li><a href="#modal_board" class="modal-trigger"><i class="material-icons">settings_applications</i>Detectar Franzininho</a></li>
-        <li><a onclick='limpar()' href="#!"><i class="material-icons">clear_all</i>Limpar</a></li>
+        <li><a href="#modal_board" class="modal-trigger"><i class="material-icons">build</i>Detectar Franzininho</a></li>
+        <li><a onclick='limpar()' href="#!"><i class="material-icons">delete</i>Limpar</a></li>
         <li>
             <div class="divider"></div>
         </li>
@@ -112,7 +119,7 @@
                 <li><a onclick='loadExample("./examples/sensor-ldr.xml", "sensor-ldr")' href="#!">Sensor de luz com LDR</a></li>
                 <li><a onclick='loadExample("./examples/semaforo.xml", "semaforo")' href="#!">Semáforo</a></li>
                 <li><a onclick='loadExample("./examples/theremin.xml", "theremin")' href="#!">Theremin</a></li>
-                <!-- <li><a onclick='save()' href="#!">Salvar XML</a></li> -->
+                <li><a onclick='save()' href="#!">Salvar XML</a></li>
             
               </ul>
             </div>
@@ -158,9 +165,9 @@
                     <category name="Matemática" colour="120">
                         <block type="math_number"></block>
                         <block type="math_arithmetic"></block>
-                        <block type="math_single"></block>
-                        <block type="math_trig"></block>
-                        <block type="math_constant"></block>
+                        <!-- <block type="math_single"></block> -->
+                        <!-- <block type="math_trig"></block> -->
+                        <!-- <block type="math_constant"></block> -->
                         <block type="math_number_property"></block>
                         <block type="math_change">
                             <value name="DELTA">
@@ -168,8 +175,8 @@
                             </value>
                         </block>
                         <block type="math_round"></block>
-                        <block type="math_modulo"></block>
-                        <block type="math_constrain">
+                        <!-- <block type="math_modulo"></block> -->
+                        <!-- <block type="math_constrain">
                             <value name="LOW">
                                 <block type="math_number">
                                     <field name="NUM">1</field>
@@ -180,8 +187,8 @@
                                     <field name="NUM">100</field>
                                 </block>
                             </value>
-                        </block>
-                        <block type="math_random_int">
+                        </block> -->
+                        <!-- <block type="math_random_int">
                             <value name="FROM">
                                 <block type="math_number">
                                     <field name="NUM">1</field>
@@ -192,11 +199,11 @@
                                     <field name="NUM">100</field>
                                 </block>
                             </value>
-                        </block>
-                        <block type="math_random_float"></block>
+                        </block> -->
+                        <!-- <block type="math_random_float"></block> -->
                         <!-- <block type="base_map"></block> -->
                     </category>
-                    <category name="Textos" colour="230">
+                    <!-- <category name="Textos" colour="230">
                         <block type="text"></block>
                         <block type="text_join"></block>
                         <block type="text_append">
@@ -206,7 +213,7 @@
                         </block>
                         <block type="text_length"></block>
                         <block type="text_isEmpty"></block>
-                    </category>
+                    </category> -->
                     <!-- <category name="Variáveis" colour="20">
                         <block type="variables_get"></block>
                         <block type="variables_set"></block>
@@ -217,16 +224,16 @@
                         </block>
                         <block type="variables_set_type"></block>
                     </category> -->
-                    <category name="Variables" custom="VARIABLE">
+                    <category name="Variáveis" custom="VARIABLE">
                     
 
                     </category>
 
                     <category name="Funções" colour="330" custom="">
                         <block type="franzininho_funcoes"></block>
-                        <block type="procedures_defnoreturn"></block>
+                        <!-- <block type="procedures_defnoreturn"></block>
                         <block type="procedures_defreturn"></block>
-                        <block type="procedures_ifreturn"></block>
+                        <block type="procedures_ifreturn"></block> -->
                     </category>
                     <category name="Entrada/Saída">
                         <block type="es_digitalwrite">
@@ -410,7 +417,7 @@
 
     <div id="modal_board" class="modal">
         <div class="modal-content">
-          <h4>Detectar Placa</h4>
+          <h4>Detectar Franzininho</h4>
           <div class="row" id="progresso">
             <span id="detecting"></span>
         </div>

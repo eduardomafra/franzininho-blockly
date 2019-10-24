@@ -146,7 +146,7 @@ Blockly.Variables.allDeveloperVariables = function(workspace) {
 Blockly.Variables.flyoutCategory = function (workspace) {
   var xmlList = [];
   var btnNumVariable = document.createElement('button');
-  btnNumVariable.setAttribute('text', 'Create Number Variable');
+  btnNumVariable.setAttribute('text', 'criar variável int');
   btnNumVariable.setAttribute('callbackKey', 'CREATE_NUM_VARIABLE');
 
   workspace.registerButtonCallback('CREATE_NUM_VARIABLE', function (button) {
@@ -171,7 +171,7 @@ Blockly.Variables.flyoutCategory = function (workspace) {
 
   var btnStringVariable = document.createElement('button');
 
-  btnStringVariable.setAttribute('text', 'Create String Variable');
+  btnStringVariable.setAttribute('text', 'criar variável string');
   btnStringVariable.setAttribute('callbackKey', 'CREATE_STRING_VARIABLE');
 
   workspace.registerButtonCallback('CREATE_STRING_VARIABLE', function (button) {
@@ -195,7 +195,7 @@ Blockly.Variables.flyoutCategory = function (workspace) {
   xmlList.push(btnStringVariable);
 
   var btnBoolVariable = document.createElement('button');
-  btnBoolVariable.setAttribute('text', 'Create Boolean Variable');
+  btnBoolVariable.setAttribute('text', 'criar variável boolean');
   btnBoolVariable.setAttribute('callbackKey', 'CREATE_BOOLEAN_VARIABLE');
 
   workspace.registerButtonCallback('CREATE_BOOLEAN_VARIABLE', function (button) {

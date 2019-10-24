@@ -1,13 +1,12 @@
 //CONFIGURAÇÕES INICIAIS
 
-var configIni = require('config.ini');
 var fs = require('fs');
+var editJsonFile = require("edit-json-file");
+var workspace;
 var DEFAULT_OS = detectOS();
 var SKETCH;
 var COMPILER;
 var DEFAULT_DEVICE;
-var workspace1;
-const editJsonFile = require("edit-json-file");
 
 function saveConfig(){
     let file = editJsonFile(`./config.json`);
@@ -29,6 +28,18 @@ function updateConfig(){
 
     compiler_path.value = file.get("path.arduino");
     sketch_path.value = file.get("path.sketch");
+
+}
+
+function loadBoard(){
+
+    let file = editJsonFile(`./config.json`);
+
+    if(file.get("board") != ""){
+
+        $('#sel_board').append('<option value="franzininho" >'+ file.get("board") +'</option>');
+
+    }
 
 }
 
@@ -75,7 +86,7 @@ function start(){
       });
     //BLOCKLY CONFIGS
 
-    var workspace = Blockly.inject('blocklyDiv',
+    var workspaceBlockly = Blockly.inject('blocklyDiv',
     {toolbox: document.getElementById('toolbox'),
      zoom:
          {controls: true,
@@ -93,18 +104,23 @@ function start(){
 
 
     function myUpdateFunction(event) {
-        var code = Blockly.Franzininho.workspaceToCode(workspace);
+        var code = Blockly.Franzininho.workspaceToCode(workspaceBlockly);
         document.getElementById('textarea').value = code;
     }
 
-    workspace.addChangeListener(myUpdateFunction);
-    workspace1 = workspace;
+    workspaceBlockly.addChangeListener(myUpdateFunction);
+    workspace = workspaceBlockly;
 
     //CONFIGURAÇÕES
 
     $("#img_circuit").hide();
 
     let file = editJsonFile(`./config.json`);
+
+    // if (file.get("board") != ""){
+    //     $('#sel_board').append('<option value="franzininho" >'+ file.get("board") +'</option>');
+    //     console.log("oi")
+    // }
 
     if (file.get("path.arduino") == "" || file.get("path.sketch") == ""){
 
@@ -129,6 +145,7 @@ function start(){
 
     SKETCH = file.get("path.sketch");
     COMPILER = file.get("path.arduino");
+    loadBoard();
 
 }
 //FUNÇÕES
@@ -215,6 +232,8 @@ function start(){
 
 function sendSketch(){
 
+    clearTerminal();
+
     if (DEFAULT_DEVICE != undefined){
         saveSketch();
 
@@ -231,17 +250,17 @@ function sendSketch(){
         usbDetect.on('add', function(device) {
             console.log('add', device); 
             if(device.deviceName == DEFAULT_DEVICE){
-                counter = 7;
+                counter = 8;
             }
         });
         
 
-        if( counter == 7 ) {
+        if( counter == 8 ) {
             usbDetect.stopMonitoring();
             arduinoLog.innerHTML = arduinoLog.innerHTML + " <font color='green'> Ok </font> " 
             Compile();
             clearInterval( timer );
-        } else if ( counter == 6 ){
+        } else if ( counter == 7 ){
             arduinoLog.innerHTML = arduinoLog.innerHTML + " <font color='red'>Placa não detectada</font> <br> Certifique-se de que o botão RESET da placa foi pressionado durante a detecção " 
             usbDetect.stopMonitoring();
             clearInterval( timer );
@@ -294,6 +313,9 @@ function Compile() {
 
 function clearTerminal(){
 
+    $("#arduinoLog1").html("");
+    $("#arduinoLog2").html("");
+
 }
 
 function expandTerminal(){
@@ -304,6 +326,7 @@ function expandTerminal(){
 
 function Verify() {
     "use strict;"
+    clearTerminal();
     saveSketch();
     expandTerminal();
     var exec = require('child_process').exec;
@@ -340,7 +363,7 @@ function Verify() {
 
 function saveSketch() {
 
-    const fs = require("fs");
+    // const fs = require("fs");
     const {
         dialog
     } = require("electron").remote;
@@ -362,31 +385,6 @@ function setBoard(){
 
     var select = document.getElementById("sel_board");
     DEFAULT_DEVICE = select.options[select.selectedIndex].text;
-
-// Detect add/insert
-// usbDetect.on('add', function(device) { console.log('add', device); });
-// usbDetect.on('add:vid', function(device) { console.log('add', device); });
-// usbDetect.on('add:vid:pid', function(device) { console.log('add', device); });
-
-// // Detect remove
-// usbDetect.on('remove', function(device) { console.log('remove', device); });
-// usbDetect.on('remove:vid', function(device) { console.log('remove', device); });
-// usbDetect.on('remove:vid:pid', function(device) { console.log('remove', device); });
-
-// // Detect add or remove (change)
-// usbDetect.on('change', function(device) { console.log('change', device); });
-// usbDetect.on('change:vid', function(device) { console.log('change', device); });
-// usbDetect.on('change:vid:pid', function(device) { console.log('change', device); });
-
-// // Get a list of USB devices on your system, optionally filtered by `vid` or `pid`
-// usbDetect.find(function(err, devices) { console.log('find', devices, err); });
-// usbDetect.find(vid, function(err, devices) { console.log('find', devices, err); });
-// usbDetect.find(vid, pid, function(err, devices) { console.log('find', devices, err); });
-// // Promise version of `find`:
-// usbDetect.find().then(function(devices) { console.log(devices); }).catch(function(err) { console.log(err); });
-
-// Allow the process to exit
-// usbDetect.stopMonitoring()
 
 }
 
@@ -429,7 +427,6 @@ function detectBoard(){
     console.log( counter++ );
     }, 1000);
 
-
 }
 
 function tst1(){
@@ -451,11 +448,11 @@ function limpar(){
 
     $("#img_circuit").hide();
 
-    workspace1.clear();
+    workspace.clear();
 
 }
 function save() {
-    var xml = Blockly.Xml.workspaceToDom(workspace1);
+    var xml = Blockly.Xml.workspaceToDom(workspace);
     var data = Blockly.Xml.domToText(xml);
   
     // Store data in blob.
@@ -464,26 +461,43 @@ function save() {
     // saveAs(builder.getBlob('text/plain;charset=utf-8'), 'blockduino.xml');
     console.log("saving blob");
     var blob = new Blob([data], {type: 'text/xml'});
-    saveAs(blob, 'blockduino.xml');
+    saveAs(blob, 'blockninho.xml');
   }
+
+function loadXml(){
+
+    const {dialog} = require('electron').remote;
+
+    dialog.showOpenDialog({
+      properties: ["openDirectory","openFile"]
+    },function (fileNames) {
+    //   console.log(fileNames[0]);
+      loadExample(fileNames[0], undefined);
+    });
+
+}
 
 function loadExample(example, img){
 
-    $("#img_circuit").show();
-    $("#img_circuit").attr("src","./circuits/"+img+".png");
-    $("#img_circuit").attr("alt",img);
+    if(img != undefined){
+    
+        $("#img_circuit").show();
+        $("#img_circuit").attr("src","./circuits/"+img+".png");
+        $("#img_circuit").attr("alt",img);
+        
+    }
 
     var xml = xmlToString(example);
     var xmlDoc = Blockly.Xml.textToDom(xml);
   // Blockly.mainWorkspace.clear();
-    workspace1.clear();
-    Blockly.Xml.domToWorkspace(workspace1, xmlDoc);
+    workspace.clear();
+    Blockly.Xml.domToWorkspace(workspace, xmlDoc);
     // $('#porra').off("click");
 } 
 
 function xmlToString(xml){
     const xml2js = require('xml2js');
-    const fs = require('fs');
+    // const fs = require('fs');
     const parser = new xml2js.Parser({ attrkey: "ATTR" });
     
     // this example reads the file synchronously
