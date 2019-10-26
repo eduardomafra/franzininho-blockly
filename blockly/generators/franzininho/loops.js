@@ -104,8 +104,8 @@ Blockly.Franzininho['controls_for'] = function(block) {
   var branch = Blockly.Franzininho.statementToCode(block, 'DO');
   branch = Blockly.Franzininho.addLoopTrap(branch, block.id);
   var code;
-  if (Blockly.isNumber(argument0) && Blockly.isNumber(argument1) &&
-      Blockly.isNumber(increment)) {
+  // if (Blockly.isNumber(argument0) && Blockly.isNumber(argument1) &&
+  //     Blockly.isNumber(increment)) {
     // All arguments are simple numbers.
     var up = parseFloat(argument0) <= parseFloat(argument1);
     code = 'for (' + variable0 + ' = ' + argument0 + '; ' +
@@ -118,41 +118,41 @@ Blockly.Franzininho['controls_for'] = function(block) {
       code += (up ? ' += ' : ' -= ') + step;
     }
     code += ') {\n' + branch + '}\n';
-  } else {
-    code = '';
-    // Cache non-trivial values to variables to prevent repeated look-ups.
-    var startVar = argument0;
-    if (!argument0.match(/^\w+$/) && !Blockly.isNumber(argument0)) {
-      var startVar = Blockly.Franzininho.variableDB_.getDistinctName(
-          variable0 + '_start', Blockly.Variables.NAME_TYPE);
-      code += 'int ' + startVar + ' = ' + argument0 + ';\n';
-    }
-    var endVar = argument1;
-    if (!argument1.match(/^\w+$/) && !Blockly.isNumber(argument1)) {
-      var endVar = Blockly.Franzininho.variableDB_.getDistinctName(
-          variable0 + '_end', Blockly.Variables.NAME_TYPE);
-      code += 'int ' + endVar + ' = ' + argument1 + ';\n';
-    }
-    // Determine loop direction at start, in case one of the bounds
-    // changes during loop execution.
-    var incVar = Blockly.Franzininho.variableDB_.getDistinctName(
-        variable0 + '_inc', Blockly.Variables.NAME_TYPE);
-    code += 'int ' + incVar + ' = ';
-    if (Blockly.isNumber(increment)) {
-      code += Math.abs(increment) + ';\n';
-    } else {
-      code += 'abs(' + increment + ');\n';
-    }
-    code += 'if (' + startVar + ' > ' + endVar + ') {\n';
-    code += Blockly.Franzininho.INDENT + incVar + ' = -' + incVar + ';\n';
-    code += '}\n';
-    code += 'for (' + variable0 + ' = ' + startVar + ';\n' +
-        '     ' + incVar + ' >= 0 ? ' +
-        variable0 + ' <= ' + endVar + ' : ' +
-        variable0 + ' >= ' + endVar + ';\n' +
-        '     ' + variable0 + ' += ' + incVar + ') {\n' +
-        branch + '}\n';
-  }
+  // } else {
+  //   code = '';
+  //   // Cache non-trivial values to variables to prevent repeated look-ups.
+  //   var startVar = argument0;
+  //   if (!argument0.match(/^\w+$/) && !Blockly.isNumber(argument0)) {
+  //     var startVar = Blockly.Franzininho.variableDB_.getDistinctName(
+  //         variable0 + '_start', Blockly.Variables.NAME_TYPE);
+  //     code += 'int ' + startVar + ' = ' + argument0 + ';\n';
+  //   }
+  //   var endVar = argument1;
+  //   if (!argument1.match(/^\w+$/) && !Blockly.isNumber(argument1)) {
+  //     var endVar = Blockly.Franzininho.variableDB_.getDistinctName(
+  //         variable0 + '_end', Blockly.Variables.NAME_TYPE);
+  //     code += 'int ' + endVar + ' = ' + argument1 + ';\n';
+  //   }
+  //   // Determine loop direction at start, in case one of the bounds
+  //   // changes during loop execution.
+  //   var incVar = Blockly.Franzininho.variableDB_.getDistinctName(
+  //       variable0 + '_inc', Blockly.Variables.NAME_TYPE);
+  //   code += 'int ' + incVar + ' = ';
+  //   if (Blockly.isNumber(increment)) {
+  //     code += Math.abs(increment) + ';\n';
+  //   } else {
+  //     code += 'abs(' + increment + ');\n';
+  //   }
+  //   code += 'if (' + startVar + ' > ' + endVar + ') {\n';
+  //   code += Blockly.Franzininho.INDENT + incVar + ' = -' + incVar + ';\n';
+  //   code += '}\n';
+  //   code += 'for (' + variable0 + ' = ' + startVar + ';\n' +
+  //       '     ' + incVar + ' >= 0 ? ' +
+  //       variable0 + ' <= ' + endVar + ' : ' +
+  //       variable0 + ' >= ' + endVar + ';\n' +
+  //       '     ' + variable0 + ' += ' + incVar + ') {\n' +
+  //       branch + '}\n';
+  // }
   return code;
 };
 

@@ -31,6 +31,23 @@ function updateConfig(){
 
 }
 
+function updateBoard(){
+    let file = editJsonFile(`./config.json`);
+
+    var select = document.getElementById("sel_board");
+    var length = select.options.length;
+    for (i = 0; i < length; i++) {
+    select.options[i] = null;
+    }
+
+    if(file.get("board") != ""){
+
+        $('#sel_board').append('<option value="franzininho" >'+ file.get("board") +'</option>');
+
+    }
+
+}
+
 function loadBoard(){
 
     let file = editJsonFile(`./config.json`);
@@ -406,9 +423,12 @@ function detectBoard(){
 
     if( counter == 8 ) {
         
-        if (placa != undefined){
-            $('#sel_board').append('<option value="franzininho" >'+ placa +'</option>');
-        }
+        // if (placa != undefined){
+        //     $('#sel_board').append('<option value="franzininho" >'+ placa +'</option>');
+        // }
+        let file = editJsonFile(`./config.json`);
+        file.set("board", placa);
+        updateBoard();
         $("#detecting").html('<font color="green"> Detectado </font> <i class="small material-icons">check</i>');
         usbDetect.stopMonitoring();
         // $("#progresso").remove(".progress, .indeterminate");
