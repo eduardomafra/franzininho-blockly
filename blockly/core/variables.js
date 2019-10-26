@@ -169,30 +169,30 @@ Blockly.Variables.flyoutCategory = function (workspace) {
 
   xmlList.push(btnNumVariable);
 
-  var btnStringVariable = document.createElement('button');
+  // var btnStringVariable = document.createElement('button');
 
-  btnStringVariable.setAttribute('text', 'criar variável string');
-  btnStringVariable.setAttribute('callbackKey', 'CREATE_STRING_VARIABLE');
+  // btnStringVariable.setAttribute('text', 'criar variável string');
+  // btnStringVariable.setAttribute('callbackKey', 'CREATE_STRING_VARIABLE');
 
-  workspace.registerButtonCallback('CREATE_STRING_VARIABLE', function (button) {
-      Blockly.Variables.createVariableButtonHandler(button.getTargetWorkspace(), function () {
-          var stringVariableBlock = workspace.newBlock('variables_set_string');
-          stringVariableBlock.initSvg();
-          stringVariableBlock.render();
+  // workspace.registerButtonCallback('CREATE_STRING_VARIABLE', function (button) {
+  //     Blockly.Variables.createVariableButtonHandler(button.getTargetWorkspace(), function () {
+  //         var stringVariableBlock = workspace.newBlock('variables_set_string');
+  //         stringVariableBlock.initSvg();
+  //         stringVariableBlock.render();
 
-          var textBlock = workspace.newBlock('text');
-          textBlock.setShadow(false);
-          textBlock.setFieldValue('abc', 'TEXT');
-          textBlock.initSvg();
-          textBlock.render();
-          stringVariableBlock.getInput('VALUE').connection.connect(textBlock.outputConnection);
+  //         var textBlock = workspace.newBlock('text');
+  //         textBlock.setShadow(false);
+  //         textBlock.setFieldValue('abc', 'TEXT');
+  //         textBlock.initSvg();
+  //         textBlock.render();
+  //         stringVariableBlock.getInput('VALUE').connection.connect(textBlock.outputConnection);
 
-          Blockly.Variables.connectedCreatedVariableToStartBlock(stringVariableBlock);
+  //         Blockly.Variables.connectedCreatedVariableToStartBlock(stringVariableBlock);
 
-      }, 'String');
-  });
+  //     }, 'String');
+  // });
 
-  xmlList.push(btnStringVariable);
+  // xmlList.push(btnStringVariable);
 
   var btnBoolVariable = document.createElement('button');
   btnBoolVariable.setAttribute('text', 'criar variável boolean');

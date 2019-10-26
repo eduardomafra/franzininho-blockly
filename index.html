@@ -6,7 +6,7 @@
     <link href="css/materialize.css" rel="stylesheet">
     <link href="css/franzininho.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="blockninho_blockly.js"></script>
+    <!-- <script src="blockninho_blockly.js"></script> -->
     <script src="franzino.js"></script>
     <script src="blockly/blockly_compressed.js"></script>
     <script src="blockly/blocks_compressed.js"></script>
@@ -45,55 +45,6 @@
                               <a class="btn-floating btn-large red">
                                     <i class="large material-icons tooltipped data-position="bottom" data-tooltip="Abrir Sketch na Arduino IDE" onclick="openIde()">receipt</i>
                                   </a>
-                            <!-- <a id="button_ide_left" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
-                            <a id="button_ide_middle" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
-                            <a id="button_ide_large" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
-                            <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
-                              <div class="spinner-layer spinner-orange">
-                                <div class="circle-clipper left">
-                                  <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                  <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                  <div class="circle"></div>
-                                </div>
-                              </div>
-                              <div class="spinner-layer spinner-dark-teal">
-                                <div class="circle-clipper left">
-                                  <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                  <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                  <div class="circle"></div>
-                                </div>
-                              </div>
-                              <div class="spinner-layer spinner-yellow">
-                                <div class="circle-clipper left">
-                                  <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                  <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                  <div class="circle"></div>
-                                </div>
-                              </div>
-                              <div class="spinner-layer spinner-light-teal">
-                                <div class="circle-clipper left">
-                                  <div class="circle"></div>
-                                </div><div class="gap-patch">
-                                  <div class="circle"></div>
-                                </div><div class="circle-clipper right">
-                                  <div class="circle"></div>
-                                </div>
-                              </div>
-                            </div> -->
-                          <!-- </div> -->
-                <!-- <li><form>
-              <div class="input-field">
-                <input id="search" type="" placeholder="Franzininho_Sketch.ino" required>
-                <label class="label-icon" for="search"><i class="material-icons">mode_edit</i></label>
-                <i class="material-icons">close</i>
-              </div>
-            </form></li> -->
             </ul>
         </div>
     </nav>
@@ -154,7 +105,7 @@
                         <block type="logic_negate"></block>
                         <block type="logic_boolean"></block>
                         <block type="logic_null"></block>
-                        <block type="logic_ternary"></block>
+                        <!-- <block type="logic_ternary"></block> -->
                     </category>
                     <category name="Loops">
                         <block type="controls_repeat"></block>
@@ -174,7 +125,7 @@
                                 <block type="math_number"></block>
                             </value>
                         </block>
-                        <block type="math_round"></block>
+                        <!-- <block type="math_round"></block> -->
                         <!-- <block type="math_modulo"></block> -->
                         <!-- <block type="math_constrain">
                             <value name="LOW">
@@ -313,23 +264,8 @@
                           </div>
                         </li>
                       </ul>
-            <!-- <ul class="tabs">
-              <li class="tab col s4"><a href="#test1">Arduino</a></li>
-              <li class="tab col s4 " id="porra"><a href="#test2">Circuitos</a></li>
-            </ul> -->
           </div>
-          <!-- <div id="test1" class="col s4">
-            <textarea id="textarea" style="height:520px;"></textarea>
-
-            <div class="card-panel white" style="padding: 0">
-                <div id="blocks_panel" class="content blocks_panel_large">
-                    <div id="content_blocks" class="content z-depth-1"></div>
-                </div>
-            </div>
-          </div> -->
-          <!-- <div id="test2" class="col s4">
-            <img src="./circuits/semaforo.png" alt="semaforo" width=365 height=520>
-          </div> -->
+  
    
             <div class="card-panel white" style="padding: 0">
                 <div id="blocks_panel" class="content blocks_panel_large">
@@ -386,26 +322,7 @@
                         <label for="sketches_path">Caminho da Sketches</label>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Selecione o bootloader</option>
-                            <option value="1">Arduino Gemma</option>
-                            <option value="2">Adafruit Trinket</option>
-                            <option value="3">Micronucleus</option>
-                        </select>
-                        <label>Bootloader</label>
-                    </div>
-                </div> -->
-                <!-- <div class="row">
-                    <div class="col s12">
-                        <select>
-                            <option value="" disabled selected>Selecione sua placa</option>
-                            <option value="1">Arduino Gemma</option>
-                        </select>
-                        <a class="waves-effect waves-light btn" id="btnDetect" onclick="detectBoard()">DETECTAR</a>
-                    </div>
-                </div> -->
+               
             </form>
         </div>
 
@@ -436,7 +353,7 @@
     <script type="text/javascript" src="js/hammer.min.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/materialize.min.js"></script>
-    <script src="franzininho_design.js"></script>
+    <!-- <script src="franzininho_design.js"></script> -->
     <script src="save.js"></script>
 </body>
 

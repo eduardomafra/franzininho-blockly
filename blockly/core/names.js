@@ -180,7 +180,7 @@ Blockly.Names.prototype.safeName_ = function(name) {
     name = encodeURI(name.replace(/ /g, '_')).replace(/[^\w]/g, '_');
     // Most languages don't allow names with leading numbers.
     if ('0123456789'.indexOf(name[0]) != -1) {
-      name = 'my_' + name;
+      name = 'var_' + name;
     }
   }
   return name;

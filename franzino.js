@@ -36,15 +36,28 @@ function updateBoard(){
 
     var select = document.getElementById("sel_board");
     var length = select.options.length;
-    for (i = 0; i < length; i++) {
-    select.options[i] = null;
-    }
 
+    console.log(select.options.length);
+    console.log(file.get("board"))
     if(file.get("board") != ""){
 
-        $('#sel_board').append('<option value="franzininho" >'+ file.get("board") +'</option>');
+        if(select.options.length > 1){
+            var opt= document.getElementById('sel_board').options[1];
+            opt.text =  file.get("board");
+        }
+        else{
 
+            $('#sel_board').append('<option value="franzininho" >'+ file.get("board") +'</option>');
+
+        }
     }
+    else {
+        if(select.options.length > 1){
+            $("#sel_board option[value='franzininho']").remove();
+            $("#sel_board").val($("#sel_board option:first").val());
+        }
+    }
+    // console.log(select.options.length);
 
 }
 
@@ -107,7 +120,7 @@ function start(){
     {toolbox: document.getElementById('toolbox'),
      zoom:
          {controls: true,
-          wheel: true,
+        //   wheel: true,
           startScale: 1.0,
           maxScale: 3,
           minScale: 0.3,
@@ -162,7 +175,7 @@ function start(){
 
     SKETCH = file.get("path.sketch");
     COMPILER = file.get("path.arduino");
-    loadBoard();
+    // loadBoard();
 
 }
 //FUNÇÕES
@@ -428,6 +441,7 @@ function detectBoard(){
         // }
         let file = editJsonFile(`./config.json`);
         file.set("board", placa);
+        file.save();
         updateBoard();
         $("#detecting").html('<font color="green"> Detectado </font> <i class="small material-icons">check</i>');
         usbDetect.stopMonitoring();
@@ -489,7 +503,7 @@ function loadXml(){
     const {dialog} = require('electron').remote;
 
     dialog.showOpenDialog({
-      properties: ["openDirectory","openFile"]
+      properties: ["openFile"]
     },function (fileNames) {
     //   console.log(fileNames[0]);
       loadExample(fileNames[0], undefined);
