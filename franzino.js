@@ -473,8 +473,14 @@ function openIde(){
 
     const {
         exec
-    } = require("child_process")
-    exec('Arduino FranzininhoSketches/FranzininhoSketches.ino').unref()
+    } = require("child_process");
+
+    if (DEFAULT_OS == 'Mac OS X'){
+        exec('Arduino FranzininhoSketches/FranzininhoSketches.ino').unref()
+    } else if(DEFAULT_OS == 'Windows'){
+        exec('FranzininhoSketches\\FranzininhoSketches.ino').unref()
+    }
+    
 }
 
 //FUNÇÕES PARA IMPLEMENTAR EXEMPLOS
