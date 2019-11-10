@@ -418,6 +418,9 @@ Blockly.prompt = function(message, defaultValue, callback) {
       value: defaultValue,
       type: 'input'
   }).then(value => {
+    if(value === null){
+      console.log("nulo");
+    }else
       callback(value);
   });
 };

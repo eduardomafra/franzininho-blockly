@@ -70,7 +70,6 @@
                 <li><a onclick='loadExample("./examples/sensor-ldr.xml", "sensor-ldr")' href="#!">Sensor de luz com LDR</a></li>
                 <li><a onclick='loadExample("./examples/semaforo.xml", "semaforo")' href="#!">Semáforo</a></li>
                 <li><a onclick='loadExample("./examples/theremin.xml", "theremin")' href="#!">Theremin</a></li>
-                <li><a onclick='save()' href="#!">Salvar XML</a></li>
             
               </ul>
             </div>
@@ -98,7 +97,7 @@
         <div class="col s8">
             <div id="blocklyDiv" style="height:570px; position: relative">
                 <xml id="toolbox" style="display: none;">
-                    <category name="Lógica">
+                    <category name="Lógica" colour="230">
                         <block type="controls_if"></block>
                         <block type="logic_compare"></block>
                         <block type="logic_operation"></block>
@@ -107,24 +106,24 @@
                         <block type="logic_null"></block>
                         <!-- <block type="logic_ternary"></block> -->
                     </category>
-                    <category name="Loops">
+                    <category name="Loops" colour="230">
                         <block type="controls_repeat"></block>
                         <block type="controls_whileUntil"></block>
                         <block type="controls_for"></block>
                         <block type="controls_flow_statements"></block>
                     </category>
-                    <category name="Matemática" colour="120">
+                    <category name="Matemática" colour="230">
                         <block type="math_number"></block>
                         <block type="math_arithmetic"></block>
                         <!-- <block type="math_single"></block> -->
                         <!-- <block type="math_trig"></block> -->
                         <!-- <block type="math_constant"></block> -->
                         <block type="math_number_property"></block>
-                        <block type="math_change">
+                        <!-- <block type="math_change">
                             <value name="DELTA">
                                 <block type="math_number"></block>
                             </value>
-                        </block>
+                        </block> -->
                         <!-- <block type="math_round"></block> -->
                         <!-- <block type="math_modulo"></block> -->
                         <!-- <block type="math_constrain">
@@ -175,18 +174,18 @@
                         </block>
                         <block type="variables_set_type"></block>
                     </category> -->
-                    <category name="Variáveis" custom="VARIABLE">
+                    <category name="Variáveis" custom="VARIABLE" colour="230">
                     
 
                     </category>
 
-                    <category name="Funções" colour="330" custom="">
+                    <category name="Funções" colour="230" custom="">
                         <block type="franzininho_funcoes"></block>
                         <!-- <block type="procedures_defnoreturn"></block>
                         <block type="procedures_defreturn"></block>
                         <block type="procedures_ifreturn"></block> -->
                     </category>
-                    <category name="Entrada/Saída">
+                    <category name="Entrada/Saída" colour="230">
                         <block type="es_digitalwrite">
                             <value name="STATE">
                                 <block type="es_highlow"></block>
@@ -218,7 +217,7 @@
                         <block type="inout_custom_analog_write"></block>
                         <block type="inout_custom_analog_read"></block>
                     </category>
-                    <category name="Tempo">
+                    <category name="Tempo" colour="230">
                         <block type="tempo_delay">
                             <value name="DELAY_TIME_MILI">
                                 <block type="math_number">
@@ -327,8 +326,8 @@
         </div>
 
         <div class="modal-footer">
-            <a href="#!" onclick="saveConfig()" class="modal-close waves-effect waves-green btn-flat">Salvar</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            <a href="#!" onclick="saveConfig()" class="modal-close waves-effect waves-light btn blue darken-3"><i class="material-icons left">save</i>Salvar</a>
+            <a href="#!" class="modal-close waves-effect waves-light btn blue darken-3"><i class="material-icons left">cancel</i>Cancelar</a>
         </div>
     </div>
 
@@ -343,10 +342,10 @@
             <option value="" disabled selected>Entradas detectadas</option>
         </select>
         <br>
-        <a class="waves-effect waves-light btn" id="btnDetect" onclick="detectBoard()">DETECTAR</a>
+        <a class="waves-effect waves-light btn blue darken-3" id="btnDetect" onclick="detectBoard()">DETECTAR</a>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">SALVAR</a>
+          <a href="#!" class="modal-close waves-effect waves-light btn blue darken-3"><i class="material-icons left">save</i>SALVAR</a>
         </div>
       </div>
 
