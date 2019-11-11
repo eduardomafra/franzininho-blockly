@@ -309,6 +309,7 @@ function sendSketch(){
 function Compile() {
     "use strict;"
     expandTerminal();
+    
     var exec = require('child_process').exec;
     
     if (DEFAULT_OS == 'Mac OS X'){
@@ -359,14 +360,16 @@ function Verify() {
     clearTerminal();
     saveSketch();
     expandTerminal();
-    var exec = require('child_process').exec;
     
+    var exec = require('child_process').exec;
+
     if (DEFAULT_OS == 'Mac OS X'){
         var cmd = COMPILER + ' --verify ' + SKETCH + 'FranzininhoSketches.ino';
     } else if(DEFAULT_OS == 'Windows'){
         var cmd = "\"" + COMPILER + "\"" + ' --verify ' + SKETCH + 'FranzininhoSketches.ino';
     }
 
+    
     exec(cmd, {
         cwd: __dirname
     }, (err, stdout, stderr) => {
