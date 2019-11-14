@@ -323,9 +323,9 @@ Blockly.Franzininho.finish = function(code) {
     delete Blockly.Franzininho.pins_;
     Blockly.Franzininho.variableDB_.reset();
 
-    var allDefs = includes.join('\n') + variables.join('') +
+    var allDefs = includes.join('\n') +// variables.join('') +
         definitions.join('\n') + functions.join('\n\n');
-    var setup = 'void setup() {' + setups.join('\n  ') + '\n}\n\n';
+    var setup = 'void setup() {\n' + variables.join('') + setups.join('\n  ') + '\n}\n\n';
     var loop = 'void loop() {\n  ' + code.replace(/\n/g, '\n  ') + '\n}';
     return allDefs + setup + loop;
   // // Indent every line.
