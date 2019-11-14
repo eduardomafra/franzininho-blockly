@@ -146,7 +146,7 @@ Blockly.Franzininho['franzininho_funcoes'] = function(block) {
     if (!goog.isString(code)) {
       throw 'Expecting code from statement block "' + targetBlock.type + '".';
     }
-    return code;
+    return code.replace(/\n/g, "\n\n");
   }
 
   var setupBranch = Blockly.Franzininho.statementToCode(block, 'SETUP_FUNC');

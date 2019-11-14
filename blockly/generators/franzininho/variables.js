@@ -66,6 +66,7 @@ var setVariableFunction = function (block) {
     var variableValue = Blockly.Franzininho.valueToCode(block, 'VALUE', Blockly.Franzininho.ORDER_ATOMIC);
 
     return variableName + ' = ' + variableValue + ';\n'
+    // Blockly.Franzininho.addSetup('userSetupCode', variableName + ' = ' + variableValue + ';\n', false);
 };
 
 var getVariableFunction = function(block) {
