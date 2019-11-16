@@ -31,6 +31,16 @@ function updateConfig(){
 
 }
 
+function getPath(){
+    const { remote } = require ('electron');
+    const path = require ('path');
+
+    let execPath = path.dirname (remote.process.execPath);
+    // let splitado = execPath.split('/', length-2);
+    // console.log(splitado);
+    return execPath;
+}
+
 function updateBoard(){
     let file = editJsonFile(`./config.json`);
 
@@ -166,7 +176,8 @@ function start(){
             var default_path = 'C:\\Program Files (x86)\\Arduino\\arduino_debug.exe';
 
             file.set("path.arduino", default_path);
-            file.set("path.sketch", (__dirname) + '\\FranzininhoSketches\\');
+            // file.set("path.sketch", (__dirname) + '\\FranzininhoSketches\\');
+            file.set("path.sketch", getPath() + '\\FranzininhoSketches\\');
             file.save();
 
         }
