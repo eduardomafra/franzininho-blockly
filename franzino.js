@@ -36,8 +36,8 @@ function getPath(){
     const path = require ('path');
 
     let execPath = path.dirname (remote.process.execPath);
-    // let splitado = execPath.split('/', length-2);
-    // console.log(splitado);
+  
+    // console.log(execPath);
     return execPath;
 }
 
@@ -546,7 +546,7 @@ function loadExample(example, img){
   // Blockly.mainWorkspace.clear();
     workspace.clear();
     Blockly.Xml.domToWorkspace(workspace, xmlDoc);
-    // $('#porra').off("click");
+    
 } 
 
 function xmlToString(xml){
