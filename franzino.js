@@ -276,6 +276,7 @@ function sendSketch(){
     clearTerminal();
 
     if (DEFAULT_DEVICE != undefined){
+        M.toast({html: 'Pressione o botão RESET na placa Franzininho'});
         saveSketch();
 
         var usbDetect = require('usb-detection');
@@ -433,6 +434,7 @@ function setBoard(){
 }
 
 function detectBoard(){
+    M.toast({html: 'Pressione o botão RESET na placa Franzininho'});
     var usbDetect = require('usb-detection');
     var placa;
     // console.log(t1)
@@ -503,6 +505,7 @@ function limpar(){
     $("#img_circuit").hide();
 
     workspace.clear();
+    clearTerminal();
 
 }
 function save() {
