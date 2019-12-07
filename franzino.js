@@ -535,7 +535,7 @@ function loadXml(){
 }
 
 function loadExample(example, img){
-
+    
     if(img != undefined){
     
         $("#img_circuit").show();
