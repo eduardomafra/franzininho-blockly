@@ -9,7 +9,7 @@
   "author": "Eduardo Henrique",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^6.0.7",
+    "electron": "^9.1.0",
     "electron-packager": "^14.0.6",
     "shelljs": "^0.8.3",
     "usb": "^1.6.0"
